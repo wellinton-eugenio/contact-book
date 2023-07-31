@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { User } from "../../../pages/dashboard"
 import { api } from "../../../services/api"
 import { Dispatch } from "react"
+import { StyledConfirmBtn } from "../../Modal/style"
 
 
 export interface iUserUpdateValues{
@@ -50,7 +51,7 @@ export const UpdateUseForm = ({user, setUser, setOpen}:upgradeProps) =>{
             <label htmlFor="password">Senha</label>
             <StyledInput type="password" id="password" placeholder="digite sua senha ou nova senha"{...register("password")}/>
 
-            <button type="submit">Atualizar</button>
+            <StyledConfirmBtn type="submit">Atualizar</StyledConfirmBtn>
             
         </form>
         

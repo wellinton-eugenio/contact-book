@@ -2,6 +2,7 @@ import { Dispatch, useState } from "react";
 import { useForm } from "react-hook-form";
 import { Contact } from "../../../pages/dashboard";
 import { api } from "../../../services/api";
+import { StyledConfirmBtn } from "../../Modal/style";
 
 interface DeleteContactProps {
     contact: Contact;
@@ -31,9 +32,9 @@ export const DeleteContactForm = ({ contact, setOpen, setContacts }: DeleteConta
     return (
         <form onSubmit={handleSubmit(handleDeleteContact)}>
             <p>Tem certeza que deseja deletar o contacto {contact.name}?</p>
-            <button type="submit" disabled={isDeleting}>
-            {isDeleting ? "Deletando..." : "Deletar"}
-            </button>
+            <StyledConfirmBtn type="submit" disabled={isDeleting}>
+                {isDeleting ? "Deletando..." : "Deletar"}
+            </StyledConfirmBtn>
         </form>
     );
 };

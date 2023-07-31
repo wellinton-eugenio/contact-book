@@ -5,6 +5,7 @@ import {zodResolver} from "@hookform/resolvers/zod";
 import { Dispatch } from "react";
 import { Contact } from "../../../pages/dashboard";
 import { api } from "../../../services/api";
+import { StyledConfirmBtn } from "../../Modal/style";
 
 interface iCreateValues {
     name:string,
@@ -41,7 +42,7 @@ export const CreateContactForm = ({toogleModal, setContacts, setOpen}:CreateProp
             <label htmlFor="cellphone">telefone</label>
             <StyledInput type="cellphone" id="cellphone" {...register("cellphone")}/>
 
-            <button type="submit" onClick={toogleModal}>Adicionar</button>
+            <StyledConfirmBtn type="submit" onClick={toogleModal}>Adicionar</StyledConfirmBtn>
         
         </form>
     </div>    

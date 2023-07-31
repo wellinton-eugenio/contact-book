@@ -36,3 +36,14 @@ export const ExitButton = styled.button`
   background-color: transparent;
   position: relative
 `
+
+export const StyledConfirmBtn = styled.button`
+width: 100%;
+height: 40px;
+background-color: var(--color-gray-700);
+border-radius: 5px;
+border: 1px solid var(--color-gray-100);
+font-size: larger;
+font-weight: 700;
+margin-top: 15px;
+`

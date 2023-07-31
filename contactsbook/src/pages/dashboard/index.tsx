@@ -6,6 +6,8 @@ import { Modal } from "../../components/Modal";
 import { CreateContactForm } from "../../components/Forms/CreateContact/CreateContactForm";
 import { UpdateUseForm } from "../../components/Forms/UpdateUser/UpdateUserForm";
 import { DeleteUseForm } from "../../components/Forms/DeleteUser/DeleteUserForm";
+import { StyledList, StyledButtonAdd, StyledHeader, StyledHeaderBottonsCont, StyledUserContainer, StyledMainCont } from "./styles";
+import contacts_logo2 from "../../assets/img/contacts_logo2.png";
 
 
 export interface Contact{
@@ -51,25 +53,32 @@ export const Dashboard = () => {
     return (
         <>
             <div>
-                <header>
-                    <div>
-                    <h1>Olá, {user ? user.name : "usuario"}</h1>
-                    <button onClick={()=>handleModal(<UpdateUseForm user={user!} setUser={setUser} setOpen={setOpen}/>)}>editar</button>
-                    <button onClick={()=>handleModal(<DeleteUseForm user={user!} setOpen={setOpen} toogleModal={toogleModal}/>)}>deletar</button>
-                    <button onClick={logoutFunction}>logout</button> 
-                    </div>
+                <StyledHeader>
+                    <img src={contacts_logo2} alt="" />
+                    <StyledUserContainer>
+                        <h1>Olá, {user ? user.name : "usuario"}</h1>
+                        <div>
+                            <p>{user?.email}</p>
+                            <p>{user?.cellphone ? user.cellphone : "cadastre um telefone"}</p>   
+                        </div>
+                    </StyledUserContainer>
+                    <StyledHeaderBottonsCont>
+                        <button onClick={()=>handleModal(<UpdateUseForm user={user!} setUser={setUser} setOpen={setOpen}/>)}>Editar Usuário</button>
+                        <button onClick={()=>handleModal(<DeleteUseForm user={user!} setOpen={setOpen} toogleModal={toogleModal}/>)}>Deletar Usuário</button>
+                        <button onClick={logoutFunction}>Logout</button> 
+                    </StyledHeaderBottonsCont>
                     
-                </header>
+                </StyledHeader>
                 {isOpen && <Modal children={form} toggleModal={toogleModal} />}
-                <main>
+                <StyledMainCont>
                     <div>
-                    <h3>Seus contatos</h3>
-                    <button onClick={()=>handleModal(<CreateContactForm toogleModal={toogleModal} setContacts={setContacts} setOpen={setOpen}/>)}>adicionar contato</button>   
+                        <h1>Seus contatos</h1>
+                        <StyledButtonAdd onClick={()=>handleModal(<CreateContactForm toogleModal={toogleModal} setContacts={setContacts} setOpen={setOpen}/>)}>Adicionar contato</StyledButtonAdd>   
                     </div>
-                    {contacts.length===0?(<span><h2>Ainda não cadastrou contatos!</h2></span>):(<ul>
+                    {contacts.length===0?(<span><h2>Ainda não cadastrou contatos!</h2></span>):(<StyledList>
                         {contacts.map((contact) => <Card key={contact.id} contact={contact} setContacts={setContacts} handleModal={handleModal} setOpen={setOpen}/>)}
-                    </ul>)}
-                </main>
+                    </StyledList>)}
+                </StyledMainCont>
             </div>
         </>
     )

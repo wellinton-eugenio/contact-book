@@ -7,4 +7,5 @@ background: var(--color-gray-100);
 color: var(--color-gray-900);
 border: 1px solid var(--color-gray-900);
 border-radius: 15px;
+padding-left: 15px;
 `

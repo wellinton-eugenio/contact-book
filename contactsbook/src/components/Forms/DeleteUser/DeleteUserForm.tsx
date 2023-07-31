@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { User } from "../../../pages/dashboard";
 import { api } from "../../../services/api";
 import { useAuth } from "../../../hooks/useAuth";
+import { StyledConfirmBtn } from "../../Modal/style";
 
 interface DeleteUserProps {
     user: User;
@@ -35,9 +36,9 @@ export const DeleteUseForm = ({ user, setOpen, toogleModal }: DeleteUserProps) =
     return (
         <form onSubmit={handleSubmit(handleDeleteUser)}>
             <p>Tem certeza que deseja deletar o usuário {user.name}?</p>
-            <button type="submit" disabled={isDeleting}>
+            <StyledConfirmBtn type="submit" disabled={isDeleting}>
             {isDeleting ? "Deletando..." : "Deletar"}
-            </button>
+            </StyledConfirmBtn>
         </form>
     );
 };

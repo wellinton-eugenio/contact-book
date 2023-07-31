@@ -5,6 +5,7 @@ import { UpdateContactData, updateContactSchema } from "../CreateContact/validat
 import { api } from "../../../services/api"
 import {zodResolver} from "@hookform/resolvers/zod";
 import { Dispatch} from "react"
+import { StyledConfirmBtn } from "../../Modal/style"
 
 interface UpdateProps{
     contact: Contact
@@ -43,7 +44,7 @@ export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) 
             <label htmlFor="cellphone">telefone</label>
             <StyledInput type="cellphone" id="cellphone" {...register("cellphone")}/>
 
-            <button type="submit">Atualizar</button>
+            <StyledConfirmBtn type="submit">Atualizar</StyledConfirmBtn>
        </form>
     )
 }

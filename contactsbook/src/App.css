@@ -10,6 +10,11 @@
   padding: 1.5em;
   will-change: filter;
   transition: filter 300ms;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  font-weight: 800;
+  font-size: large;
 }
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
