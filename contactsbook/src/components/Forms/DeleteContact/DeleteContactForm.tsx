@@ -3,11 +3,12 @@ import { useForm } from "react-hook-form";
 import { Contact } from "../../../pages/dashboard";
 import { api } from "../../../services/api";
 import { StyledConfirmBtn } from "../../Modal/style";
+import { toast } from "react-toastify";
 
 interface DeleteContactProps {
     contact: Contact;
-    setOpen:  Dispatch<React.SetStateAction<boolean>>
-    setContacts: Dispatch<React.SetStateAction<Contact[]>>
+    setOpen:  Dispatch<React.SetStateAction<boolean>>;
+    setContacts: Dispatch<React.SetStateAction<Contact[]>>;
 }
 
 export const DeleteContactForm = ({ contact, setOpen, setContacts }: DeleteContactProps) => {
@@ -19,12 +20,14 @@ export const DeleteContactForm = ({ contact, setOpen, setContacts }: DeleteConta
         try {
             setIsDeleting(true);
             const response = await api.delete(`/contacts/${contact.id}`);
-            console.log(response.data);
+            console.log(response.status);
+            toast.success("Contato deletado", {autoClose:2000});
             setIsDeleting(false);
-            setContacts((previusContacts)=>previusContacts.filter(previusContact => contact.id !== previusContact.id))
-            setOpen(false)
+            setContacts((previusContacts)=>previusContacts.filter(previusContact => contact.id !== previusContact.id));
+            setOpen(false);
         } catch (error) {
             setIsDeleting(false);
+            toast.error("Algo errado!", {autoClose:1000});
             console.log(error);
         }
     };

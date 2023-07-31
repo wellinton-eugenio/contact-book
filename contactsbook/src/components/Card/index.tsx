@@ -1,14 +1,14 @@
-import React, { Dispatch } from "react"
-import { Contact } from "../../pages/dashboard"
-import { CardSection, StyledCard, CardOption } from "./style"
-import { UpdateContactForm } from "../Forms/UpdateContact/UpdateContactFomr"
-import { DeleteContactForm } from "../Forms/DeleteContact/DeleteContactForm"
+import React, { Dispatch } from "react";
+import { Contact } from "../../pages/dashboard";
+import { CardSection, StyledCard, CardOption } from "./style";
+import { UpdateContactForm } from "../Forms/UpdateContact/UpdateContactFomr";
+import { DeleteContactForm } from "../Forms/DeleteContact/DeleteContactForm";
 
 interface CardProps {
-    contact: Contact
-    setContacts: Dispatch<React.SetStateAction<Contact[]>>
-    handleModal: (form: React.ReactNode) => void
-    setOpen: Dispatch<React.SetStateAction<Contact[]>>
+    contact: Contact;
+    setContacts: Dispatch<React.SetStateAction<Contact[]>>;
+    handleModal: (form: React.ReactNode) => void;
+    setOpen: Dispatch<React.SetStateAction<Contact[]>>;
 }
 
 export const Card = ({contact, handleModal, setOpen, setContacts}: CardProps) =>{

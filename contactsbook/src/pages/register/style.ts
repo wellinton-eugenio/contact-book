@@ -27,7 +27,6 @@ align-items: center;
 > img {
     width:100%;
 }
-
 `
 
 export const StyledRegisterDiv = styled.div`

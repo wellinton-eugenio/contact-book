@@ -1,5 +1,5 @@
-import { Modal } from "../Modal"
-import { useNavigate } from "react-router-dom"
+import { Modal } from "../Modal";
+import { useNavigate } from "react-router-dom";
 
 
 interface ModalErrorProps {
@@ -7,12 +7,12 @@ interface ModalErrorProps {
 }
 
 export const ModalError = ({ toggleModal }: ModalErrorProps) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     const handleCloseandRedirect = () => {
-        toggleModal()
-        navigate("/")
-    }
+        toggleModal();
+        navigate("/");
+    };
 
     return (
         <Modal toggleModal={toggleModal} blockClosing>
@@ -20,4 +20,4 @@ export const ModalError = ({ toggleModal }: ModalErrorProps) => {
             <button onClick={handleCloseandRedirect}>Ir para o login</button>
         </Modal>
     )
-}
+};

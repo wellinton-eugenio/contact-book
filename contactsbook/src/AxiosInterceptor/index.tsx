@@ -10,7 +10,7 @@ interface AxiosInterceptorProps {
 
 export const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
 
-    const [isOpenModal, setIsOpenModal] = useState(false)
+    const [isOpenModal, setIsOpenModal] = useState(false);
 
     useEffect(() => {
         const errorInterceptor = (error: Error) => {
@@ -22,11 +22,12 @@ export const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
                 setIsOpenModal(true)
             }
 
-            return Promise.reject(error)
-        }
-        const interceptor = api.interceptors.response.use(null, errorInterceptor)
+            return Promise.reject(error);
+        };
 
-        return () => api.interceptors.response.eject(interceptor)
+        const interceptor = api.interceptors.response.use(null, errorInterceptor);
+
+        return () => api.interceptors.response.eject(interceptor);
     }, [])
 
     return (
@@ -35,7 +36,4 @@ export const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
             {children}
         </>
     )
-
-
-
-}
+};
