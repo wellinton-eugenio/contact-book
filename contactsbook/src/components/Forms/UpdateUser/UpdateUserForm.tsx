@@ -1,12 +1,12 @@
-import { useForm } from "react-hook-form"
-import { StyledInput } from "./style"
-import { UpdateUserData, updateSchema } from "../../../pages/register/validator"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { User } from "../../../pages/dashboard"
-import { api } from "../../../services/api"
-import { Dispatch } from "react"
-import { StyledConfirmBtn } from "../../Modal/style"
-
+import { useForm } from "react-hook-form";
+import { StyledInput } from "./style";
+import { UpdateUserData, updateSchema } from "../../../pages/register/validator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { User } from "../../../pages/dashboard";
+import { api } from "../../../services/api";
+import { Dispatch } from "react";
+import { StyledConfirmBtn } from "../../Modal/style";
+import { toast } from "react-toastify";
 
 export interface iUserUpdateValues{
     name: string;
@@ -30,13 +30,14 @@ export const UpdateUseForm = ({user, setUser, setOpen}:upgradeProps) =>{
             cellphone: user.cellphone,
             password: ""
         },
-    })
+    });
 
     const newUpdateUser = async (data:UpdateUserData)=>{
-        const response = await api.patch(`/users/${user.id}`, data)
-        setUser(response.data)
-        setOpen(false)
-    }
+        const response = await api.patch(`/users/${user.id}`, data);
+        setUser(response.data);
+        toast.success("Usuário atualizado!", {autoClose:3000})
+        setOpen(false);
+    };
 
 
     return(

@@ -4,11 +4,12 @@ import { User } from "../../../pages/dashboard";
 import { api } from "../../../services/api";
 import { useAuth } from "../../../hooks/useAuth";
 import { StyledConfirmBtn } from "../../Modal/style";
+import { toast } from "react-toastify";
 
 interface DeleteUserProps {
     user: User;
-    setOpen:  Dispatch<React.SetStateAction<boolean>>
-    toogleModal: ()=>void
+    setOpen:  Dispatch<React.SetStateAction<boolean>>;
+    toogleModal: ()=>void;
 }
 
 export const DeleteUseForm = ({ user, setOpen, toogleModal }: DeleteUserProps) => {
@@ -16,18 +17,20 @@ export const DeleteUseForm = ({ user, setOpen, toogleModal }: DeleteUserProps) =
 
     const { handleSubmit } = useForm();
 
-    const {logoutFunction} = useAuth()
+    const {logoutFunction} = useAuth();
 
     const handleDeleteUser = async () => {
         try {
             setIsDeleting(true);
             const response = await api.delete(`/users/${user.id}`);
-            console.log(response.data);
+            console.log(response.status);
+            toast.success("Usuario Deletado!", {autoClose:2000});
             setIsDeleting(false);
-            setOpen(false)
-            toogleModal()
-            logoutFunction()
+            setOpen(false);
+            toogleModal();
+            logoutFunction();
         } catch (error) {
+            toast.error("Algo errado!");
             setIsDeleting(false);
             console.log(error);
         }
@@ -40,5 +43,5 @@ export const DeleteUseForm = ({ user, setOpen, toogleModal }: DeleteUserProps) =
             {isDeleting ? "Deletando..." : "Deletar"}
             </StyledConfirmBtn>
         </form>
-    );
+    )
 };

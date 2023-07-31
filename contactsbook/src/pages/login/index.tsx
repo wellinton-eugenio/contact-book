@@ -1,19 +1,22 @@
-import { useForm } from "react-hook-form"
-import { LoginData, schema } from "./validator"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useAuth } from "../../hooks/useAuth"
-import contacts_book from "../../assets/img/contacts_book.png"
-import { StyledMain, StyledHomeCont, StyledLogoDiv, StyledLoginDiv, StyledForm } from "./style"
+import { useForm } from "react-hook-form";
+import { LoginData, schema } from "./validator";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useAuth } from "../../hooks/useAuth";
+import contacts_book from "../../assets/img/contacts_book.png";
+import { StyledMain, StyledHomeCont, StyledLogoDiv, StyledLoginDiv, StyledForm } from "./style";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export const Login = () => {
     const { register, handleSubmit } = useForm<LoginData>({
         resolver: zodResolver(schema)
-    })
-    const { signIn } = useAuth()
+    });
+    const { signIn } = useAuth();
 
     return (
         <StyledMain>
+            <ToastContainer/>
             <StyledHomeCont>
                 <StyledLogoDiv>
                     <img src={contacts_book} alt=""/>

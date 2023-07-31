@@ -8,6 +8,8 @@ import { UpdateUseForm } from "../../components/Forms/UpdateUser/UpdateUserForm"
 import { DeleteUseForm } from "../../components/Forms/DeleteUser/DeleteUserForm";
 import { StyledList, StyledButtonAdd, StyledHeader, StyledHeaderBottonsCont, StyledUserContainer, StyledMainCont } from "./styles";
 import contacts_logo2 from "../../assets/img/contacts_logo2.png";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 export interface Contact{
@@ -27,39 +29,40 @@ export interface User {
 }
 
 export const Dashboard = () => {
-    const [user, setUser]=useState<User>()
-    const [isOpen, setOpen] = useState(false)
-    const [contacts, setContacts]=useState<Contact[]>([])
-    const [form, setForm] = useState<React.ReactNode | null>(null)
-    const {logoutFunction} = useAuth()
+    const [user, setUser]=useState<User>();
+    const [isOpen, setOpen] = useState(false);
+    const [contacts, setContacts]=useState<Contact[]>([]);
+    const [form, setForm] = useState<React.ReactNode | null>(null);
+    const {logoutFunction} = useAuth();
 
     useEffect(()=>{
         (async ()=> {
-            const response = await api.get<Contact[]>("/contacts")
-            setContacts(response.data)
-            const userResponse = await api.get<User>("/users")
-            setUser(userResponse.data)
-        })()
-    }, [])
+            const response = await api.get<Contact[]>("/contacts");
+            setContacts(response.data);
+            const userResponse = await api.get<User>("/users");
+            setUser(userResponse.data);
+        })();
+    }, []);
 
-    const toogleModal = () => setOpen(!isOpen)
+    const toogleModal = () => setOpen(!isOpen);
 
     const handleModal = (form: React.ReactNode) => {
-        setForm(form)
-        setOpen(!isOpen)
+        setForm(form);
+        setOpen(!isOpen);
 
-    }
+    };
 
     return (
         <>
             <div>
+                <ToastContainer/>
                 <StyledHeader>
                     <img src={contacts_logo2} alt="" />
                     <StyledUserContainer>
                         <h1>Olá, {user ? user.name : "usuario"}</h1>
                         <div>
                             <p>{user?.email}</p>
-                            <p>{user?.cellphone ? user.cellphone : "cadastre um telefone"}</p>   
+                            <p>{user?.cellphone ? user.cellphone : "cadastre um telefone"}</p>
                         </div>
                     </StyledUserContainer>
                     <StyledHeaderBottonsCont>

@@ -1,16 +1,17 @@
-import { useForm } from "react-hook-form"
-import { Contact } from "../../../pages/dashboard"
-import { StyledInput } from "../UpdateUser/style"
-import { UpdateContactData, updateContactSchema } from "../CreateContact/validator"
-import { api } from "../../../services/api"
+import { useForm } from "react-hook-form";
+import { Contact } from "../../../pages/dashboard";
+import { StyledInput } from "../UpdateUser/style";
+import { UpdateContactData, updateContactSchema } from "../CreateContact/validator";
+import { api } from "../../../services/api";
 import {zodResolver} from "@hookform/resolvers/zod";
-import { Dispatch} from "react"
-import { StyledConfirmBtn } from "../../Modal/style"
+import { Dispatch} from "react";
+import { StyledConfirmBtn } from "../../Modal/style";
+import { toast } from "react-toastify";
 
 interface UpdateProps{
-    contact: Contact
-    setOpen:Dispatch<React.SetStateAction<boolean>>
-    setContacts: Dispatch<React.SetStateAction<Contact[]>>
+    contact: Contact;
+    setOpen:Dispatch<React.SetStateAction<boolean>>;
+    setContacts: Dispatch<React.SetStateAction<Contact[]>>;
 }
 
 export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) =>{
@@ -21,15 +22,16 @@ export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) 
             email: contact.email,
             cellphone: contact.cellphone
         }
-    })
+    });
 
 
     const updateContact = async (data:UpdateContactData) =>{
-        const response = await api.patch(`/contacts/${contact.id}`, data)
+        const response = await api.patch(`/contacts/${contact.id}`, data);
 
-        console.log(response.status)
-        setContacts((previusContacts)=>previusContacts.map(previusContact=> contact.id === previusContact.id ? response.data : previusContact))
-        setOpen(false)
+        console.log(response.status);
+        toast.success("Contato atualizado", {autoClose:3000});
+        setContacts((previusContacts)=>previusContacts.map(previusContact=> contact.id === previusContact.id ? response.data : previusContact));
+        setOpen(false);
     }
 
 
@@ -37,12 +39,14 @@ export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) 
 
     return(
        <form onSubmit={handleSubmit(updateContact)}>
-        <label htmlFor="name">Nome</label>
-            <StyledInput type="name" id="name" {...register("name")}/>
+            <label htmlFor="name">Nome</label>
+            <StyledInput type="name" id="name" {...register("name")}/>;
+
             <label htmlFor="email">Email</label>
-            <StyledInput type="email" id="email" {...register("email")}/>
+            <StyledInput type="email" id="email" {...register("email")}/>;
+
             <label htmlFor="cellphone">telefone</label>
-            <StyledInput type="cellphone" id="cellphone" {...register("cellphone")}/>
+            <StyledInput type="cellphone" id="cellphone" {...register("cellphone")}/>;
 
             <StyledConfirmBtn type="submit">Atualizar</StyledConfirmBtn>
        </form>
