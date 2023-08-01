@@ -45,16 +45,18 @@ export const UpdateUseForm = ({user, setUser, setOpen}:upgradeProps) =>{
 
             <label htmlFor="name">Nome</label>
             <StyledInput type="name" id="name" {...register("name")}/>
+            
             <label htmlFor="email">Email</label>
             <StyledInput type="email" id="email" {...register("email")}/>
+            
             <label htmlFor="cellphone">telefone</label>
             <StyledInput type="cellphone" id="cellphone" {...register("cellphone")}/>
+            
             <label htmlFor="password">Senha</label>
             <StyledInput type="password" id="password" placeholder="digite sua senha ou nova senha"{...register("password")}/>
 
             <StyledConfirmBtn type="submit">Atualizar</StyledConfirmBtn>
             
-        </form>
-        
-    )
-}
+        </form>    
+    );
+};

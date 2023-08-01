@@ -84,5 +84,5 @@ export const Dashboard = () => {
                 </StyledMainCont>
             </div>
         </>
-    )
-}
+    );
+};

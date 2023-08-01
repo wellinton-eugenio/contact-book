@@ -1,16 +1,16 @@
-import { ReactNode, useEffect, useRef } from "react"
-import { Container, ExitButton } from "./style"
-import { createPortal } from "react-dom"
+import { ReactNode, useEffect, useRef } from "react";
+import { Container, ExitButton } from "./style";
+import { createPortal } from "react-dom";
 
 
 interface ModalProps {
-    toggleModal: () => void
-    children: ReactNode
-    blockClosing?: boolean
+    toggleModal: () => void;
+    children: ReactNode;
+    blockClosing?: boolean;
 }
 
 export const Modal = ({ children, toggleModal, blockClosing }: ModalProps) => {
-    const ref = useRef<HTMLDivElement>(null)
+    const ref = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
         const handleClick = (event: MouseEvent) => {
@@ -33,7 +33,7 @@ export const Modal = ({ children, toggleModal, blockClosing }: ModalProps) => {
             window.removeEventListener("mousedown", handleClick)
         }
 
-    }, [toggleModal])
+    }, [toggleModal]);
 
     return createPortal(
         <Container>
@@ -42,5 +42,5 @@ export const Modal = ({ children, toggleModal, blockClosing }: ModalProps) => {
                 {children}
             </div>
         </Container>, document.body
-    )
-}
+    );
+};

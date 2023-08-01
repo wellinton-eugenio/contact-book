@@ -48,8 +48,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
             localStorage.setItem("@contactbook:token", token);
             setLoading(false);
             setTimeout(()=>{navigate("/dashboard")}, 4000);
-        }
-        catch (error) {
+        }catch (error) {
             toast.error("Algo errado! Verifique suas credenciais.", {autoClose: 3000,});
             console.log(error);
         }
@@ -57,7 +56,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     const registerUser = async(data:RegisterData)=>{
         try{
-            const response = await api.post("/users", data)
+            const response = await api.post("/users", data);
             console.log(response.status);
             toast.success("Tudo certo!! Direcionado para login!", {
                 autoClose: 3000,
@@ -76,7 +75,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
 
     return (
         <AuthContext.Provider value={{ signIn, loading, registerUser, logoutFunction }}>
-            {children};
+            {children}
         </AuthContext.Provider>
-    )
-}
+    );
+};

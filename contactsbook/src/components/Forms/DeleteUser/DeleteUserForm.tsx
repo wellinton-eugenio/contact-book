@@ -43,5 +43,5 @@ export const DeleteUseForm = ({ user, setOpen, toogleModal }: DeleteUserProps) =
             {isDeleting ? "Deletando..." : "Deletar"}
             </StyledConfirmBtn>
         </form>
-    )
+    );
 };

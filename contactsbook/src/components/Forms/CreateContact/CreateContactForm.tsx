@@ -9,23 +9,23 @@ import { StyledConfirmBtn } from "../../Modal/style";
 import { toast } from "react-toastify";
 
 interface CreateProps{
-    toogleModal: ()=>void,
-    setContacts: Dispatch<React.SetStateAction<Contact[]>>
-    setOpen: Dispatch<React.SetStateAction<boolean>>
+    toogleModal: ()=>void;
+    setContacts: Dispatch<React.SetStateAction<Contact[]>>;
+    setOpen: Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const CreateContactForm = ({toogleModal, setContacts, setOpen}:CreateProps) =>{
     const {register, handleSubmit} = useForm({
         resolver: zodResolver(createContactSchema)
-    })
+    });
 
     const createNewContact = async (data:ContactData)=>{
-        const response = await api.post("/contacts", data)
-        toast.success("Contato cadastrado", {autoClose: 2000,})
-        setContacts(previusContacts=>[...previusContacts, response.data])
-        setOpen(false)
+        const response = await api.post("/contacts", data);
+        toast.success("Contato cadastrado", {autoClose: 2000,});
+        setContacts(previusContacts=>[...previusContacts, response.data]);
+        setOpen(false);
+    };
 
-    }
     return(
         <div>
             <h3>Adicionar contato</h3>
@@ -41,5 +41,5 @@ export const CreateContactForm = ({toogleModal, setContacts, setOpen}:CreateProp
                 <StyledConfirmBtn type="submit" onClick={toogleModal}>Adicionar</StyledConfirmBtn>
             </form>
         </div>    
-    )
-}
+    );
+};
