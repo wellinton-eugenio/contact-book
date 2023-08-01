@@ -10,8 +10,8 @@ export const updateContactSchema = z.object({
     name: z.string().optional(),
     email: z.string().email("Insira um email Valido").optional(),
     cellphone: z.string().optional(),
-})
+});
 
-export type ContactData = z.infer<typeof createContactSchema>
+export type ContactData = z.infer<typeof createContactSchema>;
 
-export type UpdateContactData = z.infer<typeof updateContactSchema>
+export type UpdateContactData = z.infer<typeof updateContactSchema>;

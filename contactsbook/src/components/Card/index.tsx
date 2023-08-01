@@ -8,7 +8,7 @@ interface CardProps {
     contact: Contact;
     setContacts: Dispatch<React.SetStateAction<Contact[]>>;
     handleModal: (form: React.ReactNode) => void;
-    setOpen: Dispatch<React.SetStateAction<Contact[]>>;
+    setOpen: Dispatch<React.SetStateAction<boolean>>;
 }
 
 export const Card = ({contact, handleModal, setOpen, setContacts}: CardProps) =>{
@@ -22,5 +22,5 @@ export const Card = ({contact, handleModal, setOpen, setContacts}: CardProps) =>
                 <CardOption onClick={()=>handleModal(<DeleteContactForm contact={contact} setOpen={setOpen} setContacts={setContacts}/>)}>Deletar</CardOption>
             </CardSection>
         </StyledCard>
-    )
-}
+    );
+};

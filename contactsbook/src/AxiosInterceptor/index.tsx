@@ -23,17 +23,17 @@ export const AxiosInterceptor = ({ children }: AxiosInterceptorProps) => {
             }
 
             return Promise.reject(error);
-        };
+        }
 
         const interceptor = api.interceptors.response.use(null, errorInterceptor);
 
-        return () => api.interceptors.response.eject(interceptor);
-    }, [])
+        return () => api.interceptors.response.eject(interceptor)
+    }, []);
 
     return (
         <>
             {isOpenModal && <ModalError toggleModal={() => setIsOpenModal(!isOpenModal)} />}
             {children}
         </>
-    )
+    );
 };

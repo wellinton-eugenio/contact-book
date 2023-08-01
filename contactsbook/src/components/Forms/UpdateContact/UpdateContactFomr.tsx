@@ -24,18 +24,13 @@ export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) 
         }
     });
 
-
     const updateContact = async (data:UpdateContactData) =>{
         const response = await api.patch(`/contacts/${contact.id}`, data);
-
         console.log(response.status);
         toast.success("Contato atualizado", {autoClose:3000});
         setContacts((previusContacts)=>previusContacts.map(previusContact=> contact.id === previusContact.id ? response.data : previusContact));
         setOpen(false);
-    }
-
-
-
+    };
 
     return(
        <form onSubmit={handleSubmit(updateContact)}>
@@ -50,5 +45,5 @@ export const UpdateContactForm = ({contact, setOpen, setContacts}: UpdateProps) 
 
             <StyledConfirmBtn type="submit">Atualizar</StyledConfirmBtn>
        </form>
-    )
-}
+    );
+};

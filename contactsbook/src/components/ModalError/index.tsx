@@ -3,15 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 
 interface ModalErrorProps {
-    toggleModal: () => void
+    toggleModal: () => void;
 }
 
 export const ModalError = ({ toggleModal }: ModalErrorProps) => {
     const navigate = useNavigate();
 
     const handleCloseandRedirect = () => {
-        toggleModal();
-        navigate("/");
+        toggleModal()
+        navigate("/")
     };
 
     return (
@@ -19,5 +19,5 @@ export const ModalError = ({ toggleModal }: ModalErrorProps) => {
             Você não está autenticado !
             <button onClick={handleCloseandRedirect}>Ir para o login</button>
         </Modal>
-    )
+    );
 };
