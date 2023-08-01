@@ -16,6 +16,9 @@ height:600px;
 display:flex;
 border: 3px solid var(--color-blue-900);
 border-radius: 20px;
+@media(max-width:950px){
+    flex-direction: column;
+}  
 
 `
 export const StyledLogoDiv = styled.div`
@@ -24,8 +27,16 @@ height:100%;
 display: flex;
 justify-content: center;
 align-items: center;
+@media(max-width:950px){
+    width: 100%;
+    height:30%;
+}  
 > img {
     width:100%;
+    @media(max-width:950px){
+        width: 100%;
+        height:100%;
+    }
 }
 `
 
@@ -39,7 +50,14 @@ justify-content: space-around;
 align-items:center;
 gap:15px;
 border-radius: 0px 20px 20px 0px;
-padding: 20px
+padding: 20px;
+@media(max-width:950px){
+    width: 100%;
+    height:70%;
+    gap:1px;
+    border-radius: 0px 0px 20px 20px;
+    padding: 5px;
+}
 `
 
 export const StyledForm = styled.form`

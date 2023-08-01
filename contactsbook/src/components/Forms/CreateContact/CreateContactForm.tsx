@@ -16,10 +16,13 @@ interface CreateProps{
 
 export const CreateContactForm = ({toogleModal, setContacts, setOpen}:CreateProps) =>{
     const {register, handleSubmit} = useForm({
-        resolver: zodResolver(createContactSchema)
+        resolver: zodResolver(createContactSchema),
+        defaultValues:{
+            email: null
+        }
     });
 
-    const createNewContact = async (data:ContactData)=>{
+    const createNewContact = async (data:ContactData)=>{        console.log(data)
         const response = await api.post("/contacts", data);
         toast.success("Contato cadastrado", {autoClose: 2000,});
         setContacts(previusContacts=>[...previusContacts, response.data]);

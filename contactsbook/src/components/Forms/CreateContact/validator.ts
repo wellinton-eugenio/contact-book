@@ -1,8 +1,8 @@
 import {z} from "zod";
 
 export const createContactSchema = z.object({
-    name: z.string().nonempty("Seu nome e obrigatorio"),
-    email: z.string().email("Insira um email Valido"),
+    name: z.string().nonempty("O nome é obrigatorio"),
+    email: z.string().email().nullish().default(null),
     cellphone: z.string(),
 });
 

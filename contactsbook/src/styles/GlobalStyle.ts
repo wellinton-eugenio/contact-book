@@ -50,8 +50,6 @@ export default createGlobalStyle`
     background: var(--color-gray-900);
     color: var(--color-gray-300);
     -webkit-font-smoothing: antialiased;
-
-    overflow-x: hidden;
   }
 
   body, input, button, textarea {

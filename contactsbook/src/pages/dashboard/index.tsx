@@ -10,6 +10,9 @@ import { StyledList, StyledButtonAdd, StyledHeader, StyledHeaderBottonsCont, Sty
 import contacts_logo2 from "../../assets/img/contacts_logo2.png";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ModalError } from "../../components/ModalError";
+import { useNavigate } from "react-router";
+import { Footer } from "../../components/Footer";
 
 
 export interface Contact{
@@ -33,23 +36,41 @@ export const Dashboard = () => {
     const [isOpen, setOpen] = useState(false);
     const [contacts, setContacts]=useState<Contact[]>([]);
     const [form, setForm] = useState<React.ReactNode | null>(null);
+    const [isAuth, setAuth] = useState(false);
     const {logoutFunction} = useAuth();
+    const navigate = useNavigate()
+
+
+    const isUserAuthenticated = () => {
+        const token = localStorage.getItem("@contactbook:token");
+        return token !== null;
+    };
 
     useEffect(()=>{
         (async ()=> {
-            const response = await api.get<Contact[]>("/contacts");
-            setContacts(response.data);
-            const userResponse = await api.get<User>("/users");
-            setUser(userResponse.data);
+            const authenticated = isUserAuthenticated()
+            if(!authenticated){
+                setAuth(true)
+            }else {
+                const response = await api.get<Contact[]>("/contacts");
+                setContacts(response.data);
+                const userResponse = await api.get<User>("/users");
+                setUser(userResponse.data);
+            }
+            
         })();
     }, []);
 
     const toogleModal = () => setOpen(!isOpen);
 
+    const toogleModalAuth = () => {
+        setAuth(!isAuth);
+        navigate("/")
+    };
+
     const handleModal = (form: React.ReactNode) => {
         setForm(form);
         setOpen(!isOpen);
-
     };
 
     return (
@@ -72,6 +93,7 @@ export const Dashboard = () => {
                     </StyledHeaderBottonsCont>
                     
                 </StyledHeader>
+                {isAuth && <ModalError toggleModal={toogleModalAuth}/>}
                 {isOpen && <Modal children={form} toggleModal={toogleModal} />}
                 <StyledMainCont>
                     <div>
@@ -82,6 +104,7 @@ export const Dashboard = () => {
                         {contacts.map((contact) => <Card key={contact.id} contact={contact} setContacts={setContacts} handleModal={handleModal} setOpen={setOpen}/>)}
                     </StyledList>)}
                 </StyledMainCont>
+                <Footer/>
             </div>
         </>
     );
